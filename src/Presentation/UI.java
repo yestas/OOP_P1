@@ -1,13 +1,16 @@
 package Presentation;
 import java.util.List;
 import java.util.Scanner;
+import Business.*;
 
 public class UI {
 
     private Scanner scanner;
 
     public UI() {
-        this.scanner = new Scanner();
+        this.scanner = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
+
     }
 
     public void printMenu() {

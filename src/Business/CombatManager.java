@@ -3,9 +3,9 @@ package Business;
 public class CombatManager {
     private TeamManager teamManager;
     private ItemManager itemManager;
-    private StatisticsManager statisticsManager;
+    private StatisticManager statisticsManager;
 
-    public CombatManager(ItemManager itemManager, TeamManager teamManager, StatisticsManager statisticsManager) {
+    public CombatManager(ItemManager itemManager, TeamManager teamManager, StatisticManager statisticsManager) {
         this.itemManager = itemManager;
         this.teamManager = teamManager;
         this.statisticsManager = statisticsManager;

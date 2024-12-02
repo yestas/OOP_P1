@@ -1,5 +1,9 @@
 package Application;
 
+import Business.*;
+import Presentation.*;
+import Persistence.*;
+
 public class Controller {
     private UI ui;
     private TeamManager teamManager;

@@ -1,4 +1,5 @@
 package Business;
+import Persistence.*;
 
 public class ItemManager {
     private ItemDAO itemDAO;

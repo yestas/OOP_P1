@@ -1,9 +1,10 @@
 package Business;
+import Persistence.*;
 
-public class StatisticsManager {
-    private StatisticsDAO statisticDAO;
+public class StatisticManager {
+    private StatisticDAO statisticDAO;
 
-    public StatisticsManager(StatisticsDAO dao) {
+    public StatisticManager(StatisticDAO dao) {
         this.statisticDAO = dao;
     }
 

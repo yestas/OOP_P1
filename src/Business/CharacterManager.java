@@ -1,4 +1,6 @@
 package Business;
+import Persistence.CharacterDAO;
+
 import java.util.List;
 
 public class CharacterManager {
