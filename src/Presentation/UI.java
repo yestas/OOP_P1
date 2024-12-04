@@ -2,6 +2,7 @@ package Presentation;
 import java.util.List;
 import java.util.Scanner;
 import Business.*;
+import Business.Character;
 
 public class UI {
 

@@ -1,15 +1,15 @@
 package Persistence;
-import org.json.JSONObject;
+import com.google.gson.Gson;
 import java.util.List;
 
 public abstract class BaseDAO<T> implements DAO<T> {
     protected String filename;
 
-    public JSONObject readFile() {
+    public Gson readFile() {
         return null;
     }
 
-    public void writeFile(JSONObject data) {
+    public void writeFile(Gson data) {
     }
 
     public int getNextId() {

@@ -1,4 +1,6 @@
 package Persistence;
+import Business.Team;
+
 import java.util.List;
 
 public class TeamDAO extends BaseDAO<Team> {
@@ -24,6 +26,18 @@ public class TeamDAO extends BaseDAO<Team> {
         return null;
     }
 
-    public void deleteTeam(Team team) {
+    public boolean deleteTeam(Team team) {
+        return false;
+    }
+
+    public boolean checkNameUnique(String name) {
+        return false; 
+    }
+
+    public Team getTeam() {
+        return Team;
+    }
+
+    public boolean createTeam(Team team) {
     }
 }

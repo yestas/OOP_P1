@@ -1,4 +1,6 @@
 package Persistence;
+import Business.Statistic;
+
 import java.util.List;
 
 public class StatisticDAO extends BaseDAO<Statistic> {

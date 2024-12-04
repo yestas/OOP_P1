@@ -1,5 +1,7 @@
 package Business;
 
+import Persistence.TeamDAO;
+
 public class TeamManager {
     private TeamDAO teamDAO;
 

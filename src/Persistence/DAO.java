@@ -1,10 +1,10 @@
 package Persistence;
-import org.json.JSONObject;
+import com.google.gson.Gson;
 import java.util.List;
 
 public interface DAO<T> {
-    JSONObject readFile();
-    void writeFile(JSONObject data);
+    Gson readFile();
+    void writeFile(Gson data);
     void save(T data);
     T getById(int id);
     int getNextId();

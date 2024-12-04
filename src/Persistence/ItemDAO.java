@@ -1,4 +1,6 @@
 package Persistence;
+import Business.Item;
+
 import java.util.List;
 
 public class ItemDAO extends BaseDAO<Item> {
