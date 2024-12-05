@@ -37,7 +37,13 @@ public class CharacterManager {
         return characters.size();
     }
 
-    public Character getCharacterById(int id) {
-        return characterDAO.getById(id);
+
+
+    public Character getSpecificCharacter(int orderId) throws FileNotFoundException, PersonalizedException {
+        List<Character> characterList = characterDAO.getAll();
+
+        long selectedCharacterId = characterList.get(orderId - 1).getId();
+
+        return characterDAO.getById(selectedCharacterId, characterList);
     }
 }

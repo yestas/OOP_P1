@@ -8,7 +8,7 @@ public interface DAO<T> {
     Gson readFile() throws FileNotFoundException;
     void writeFile(Gson data) throws FileNotFoundException;
     void save(T data);
-    T getById(int id);
+    T getById(long id);
     int getNextId();
     List<T> getAll() throws FileNotFoundException;
 }

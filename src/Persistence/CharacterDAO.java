@@ -35,30 +35,39 @@ public class CharacterDAO extends BaseDAO<Character> {
             throw new PersonalizedException("ERROR: 'characters.json' doesn't have the correct format!");
         }
     }
+
     public void save(Character data) {
     }
 
-    public Character getById(int id) {
-        return null;
+    public Character getById(long id, List<Character> characters) throws PersonalizedException {
+
+        for (Character character : characters) {
+            if (character.getId() == id) {
+                return character;
+            }
+        }
+
+        throw new PersonalizedException("ERROR: Character not found!");
     }
 
     public List<Character> getAll() throws FileNotFoundException {
         File file = new File("src/data/characters.json");
 
-            Scanner scan = new Scanner(file);
-            StringBuilder fileContent = new StringBuilder();
+        Scanner scan = new Scanner(file);
+        StringBuilder fileContent = new StringBuilder();
 
-            while (scan.hasNextLine()) {
-                fileContent.append(scan.nextLine()).append("\n");
-            }
-
-            String cleanedContent = fileContent.toString().trim();
-            if (cleanedContent.endsWith(",")) {
-                cleanedContent = cleanedContent.substring(0, cleanedContent.length() - 1);
-            }
-
-            Gson gson = new Gson();
-            return gson.fromJson(cleanedContent, new TypeToken<List<Character>>(){}.getType());
-
+        while (scan.hasNextLine()) {
+            fileContent.append(scan.nextLine()).append("\n");
         }
+
+        String cleanedContent = fileContent.toString().trim();
+
+        if (cleanedContent.endsWith(",")) {
+            cleanedContent = cleanedContent.substring(0, cleanedContent.length() - 1);
+        }
+
+        Gson gson = new Gson();
+        return gson.fromJson(cleanedContent, new TypeToken<List<Character>>(){}.getType());
+
+    }
 }

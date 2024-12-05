@@ -2,6 +2,7 @@ package Presentation;
 import java.util.List;
 import java.util.Scanner;
 import Business.*;
+import Business.Character;
 import Business.CharacterMember;
 import Persistence.PersonalizedException;
 
@@ -52,6 +53,15 @@ public class UI {
         System.out.print("Choose an option: ");
 
         return scanner.nextLine();
+    }
+
+    public void printCharacterInfo(Character character) {
+        System.out.println();
+        System.out.println("\tID: " + character.getId());
+        System.out.println("\tNAME: " + character.getName());
+        System.out.println("\tWEIGHT: " + character.getWeight());
+        System.out.println("TEAMS: ");
+        System.out.println("TODO: IMPLEMENT TEAMS");
     }
 
     public void printTeamMenu() {

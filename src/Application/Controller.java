@@ -1,10 +1,9 @@
 package Application;
 
 import Business.*;
+import Business.Character;
 import Presentation.*;
 import Persistence.*;
-
-import java.io.FileNotFoundException;
 
 public class Controller {
     private UI ui;
@@ -92,7 +91,7 @@ public class Controller {
     }
 
     public void listCharacters() {
-        System.out.println("TODO: Implement listCharacters");
+        System.out.println("TODO: IMPLEMENT PRINT TEAMS FROM SPECIFIC USER");
         String input = "";
         int menuOption = -1;
 
@@ -102,7 +101,10 @@ public class Controller {
                 menuOption = uiManager.checkUserInput(input, 0, characterManager.getAllCharacterLength());
 
                 if (menuOption != 0) {
-                    // characterManager.getCharacterInfo(menuOption);
+                    Character specificCharacter = characterManager.getSpecificCharacter(menuOption);
+                    // TODO MAKE THE PRINT CHARACTER INFO ALSO PRINT THE TEAMS THE CHARACTER MUST BE IN
+                    // TODO: IMPLEMENT IN TEAM MENU THE ABILITY TO ADD A CHARACTER TO A TEAM, AND TO RETURN A LIST OF TEAMS CHAR IS IN
+                    ui.printCharacterInfo(specificCharacter);
                 }
 
             } catch (Exception e) {

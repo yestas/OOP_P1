@@ -39,7 +39,7 @@ public abstract class BaseDAO<T> implements DAO<T> {
     public void save(T data) {
     }
 
-    public T getById(int id) {
+    public T getById(long id) {
         return null;
     }
 
