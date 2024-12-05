@@ -7,6 +7,7 @@ public class Main {
 
     private static Controller controller;
     private static UI ui;
+    private static UiManager uiManager;
     private static CharacterManager characterManager;
     private static CombatManager combatManager;
     private static StatisticManager statisticsManager;
@@ -17,11 +18,12 @@ public class Main {
 
     public static void main(String[] args) {
         ui = new UI();
+        uiManager = new UiManager();
         characterManager = new CharacterManager(new CharacterDAO());
         combatManager = new CombatManager(itemManager, teamManager, statisticsManager);
         statisticsManager = new StatisticManager(statisticDAO);
         itemManager = new ItemManager(itemDAO);
-        controller = new Controller(ui, characterManager, teamManager, itemManager, statisticsManager, combatManager);
+        controller = new Controller(ui, uiManager, characterManager, teamManager, itemManager, statisticsManager, combatManager);
 
         controller.run();
     }
