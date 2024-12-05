@@ -21,6 +21,8 @@ public class Main {
         combatManager = new CombatManager(itemManager, teamManager, statisticsManager);
         statisticsManager = new StatisticManager(statisticDAO);
         itemManager = new ItemManager(itemDAO);
-        controller = new Controller(ui, teamManager, itemManager, statisticsManager, combatManager);
+        controller = new Controller(ui, characterManager, teamManager, itemManager, statisticsManager, combatManager);
+
+        controller.run();
     }
 }

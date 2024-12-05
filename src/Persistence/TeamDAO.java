@@ -34,10 +34,15 @@ public class TeamDAO extends BaseDAO<Team> {
         return false; 
     }
 
-    public Team getTeam() {
-        return Team;
-    }
+    //public Team getTeam() {
+    //    return Team;
+    //}
 
     public boolean createTeam(Team team) {
+        return false;
+    }
+
+    public boolean teamsExists() {
+        return false;
     }
 }

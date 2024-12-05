@@ -17,9 +17,9 @@ public class TeamManager {
         return teamDAO.createTeam(team);
     }
 
-    public Team getTeam() {
-        return teamDAO.getTeam();
-    }
+    //public Team getTeam() {
+    //    return teamDAO.getTeam();
+    //}
 
     public boolean checkNameUnique(String name) {
         return teamDAO.checkNameUnique(name);

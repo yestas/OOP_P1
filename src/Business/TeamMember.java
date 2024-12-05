@@ -1,13 +1,13 @@
 package Business;
 
 public class TeamMember {
-    private Character character;
+    private CharacterMember characterMember;
     private Strategy strategy;
     private Item armour;
     private Item weapon;
 
-    public TeamMember(Character character, Strategy strategy, Item armour, Item weapon) {
-        this.character = character;
+    public TeamMember(CharacterMember characterMember, Strategy strategy, Item armour, Item weapon) {
+        this.characterMember = characterMember;
         this.strategy = strategy;
         this.armour = armour;
         this.weapon = weapon;

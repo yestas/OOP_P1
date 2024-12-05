@@ -2,7 +2,7 @@ package Presentation;
 import java.util.List;
 import java.util.Scanner;
 import Business.*;
-import Business.Character;
+import Business.CharacterMember;
 
 public class UI {
 
@@ -49,7 +49,7 @@ public class UI {
         return scanner.nextLine();
     }
 
-    public void listCharacters(List<Character> characters) {
+    public void listCharacters(List<CharacterMember> characterMembers) {
     }
 
     public void listTeams(List<Team> teams) {

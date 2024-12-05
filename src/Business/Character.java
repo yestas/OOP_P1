@@ -1,25 +1,37 @@
 package Business;
 
 public class Character {
-    private int id;
+    private long id;
     private String name;
     private double weight;
-    private float accumulatedDamage;
-    private float knockout;
-    private float damageReduction;
-    private boolean isEliminated;
 
-    public Character(int id, String name, double weight, float accumulatedDamage, float knockout, float damageReduction, boolean isEliminated) {
+    public Character(int id, String name, double weight) {
         this.id = id;
         this.name = name;
         this.weight = weight;
-        this.accumulatedDamage = accumulatedDamage;
-        this.knockout = knockout;
-        this.damageReduction = damageReduction;
-        this.isEliminated = isEliminated;
     }
 
-    public String toString() {
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
     }
 }

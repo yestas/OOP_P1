@@ -1,7 +1,6 @@
 package Business;
 import Persistence.CharacterDAO;
-
-import java.util.List;
+import Persistence.PersonalizedException;
 
 public class CharacterManager {
     private CharacterDAO characterDAO;
@@ -10,7 +9,11 @@ public class CharacterManager {
         this.characterDAO = dao;
     }
 
-    public List<Character> getList() {
-        return characterDAO.getCharacters();
+    public void checkFileExists() throws PersonalizedException {
+        characterDAO.checkFile();
     }
+
+    //public List<Character> getList() {
+    //    return characterDAO.getAll();
+    //}
 }
