@@ -42,7 +42,23 @@ public class CharacterDAO extends BaseDAO<Character> {
         return null;
     }
 
-    public List<Character> getAll() {
-        return null;
-    }
+    public List<Character> getAll() throws FileNotFoundException {
+        File file = new File("src/data/characters.json");
+
+            Scanner scan = new Scanner(file);
+            StringBuilder fileContent = new StringBuilder();
+
+            while (scan.hasNextLine()) {
+                fileContent.append(scan.nextLine()).append("\n");
+            }
+
+            String cleanedContent = fileContent.toString().trim();
+            if (cleanedContent.endsWith(",")) {
+                cleanedContent = cleanedContent.substring(0, cleanedContent.length() - 1);
+            }
+
+            Gson gson = new Gson();
+            return gson.fromJson(cleanedContent, new TypeToken<List<Character>>(){}.getType());
+
+        }
 }

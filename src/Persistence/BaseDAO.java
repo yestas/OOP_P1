@@ -43,7 +43,7 @@ public abstract class BaseDAO<T> implements DAO<T> {
         return null;
     }
 
-    public List<T> getAll() {
+    public List<T> getAll() throws FileNotFoundException {
         return null;
     }
 }

@@ -10,5 +10,5 @@ public interface DAO<T> {
     void save(T data);
     T getById(int id);
     int getNextId();
-    List<T> getAll();
+    List<T> getAll() throws FileNotFoundException;
 }

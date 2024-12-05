@@ -4,6 +4,8 @@ import Business.*;
 import Presentation.*;
 import Persistence.*;
 
+import java.io.FileNotFoundException;
+
 public class Controller {
     private UI ui;
     private UiManager uiManager;
@@ -91,6 +93,22 @@ public class Controller {
 
     public void listCharacters() {
         System.out.println("TODO: Implement listCharacters");
+        String input = "";
+        int menuOption = -1;
+
+        do {
+            try {
+                input = ui.printListCharacters(characterManager.getAllCharacterNames());
+                menuOption = uiManager.checkUserInput(input, 0, characterManager.getAllCharacterLength());
+
+                if (menuOption != 0) {
+                    // characterManager.getCharacterInfo(menuOption);
+                }
+
+            } catch (Exception e) {
+                ui.printMessage(e.getMessage());
+            }
+        } while(menuOption != 0);
     }
 
     public void manageTeams() {

@@ -11,7 +11,6 @@ public class UI {
 
     public UI() {
         this.scanner = new Scanner(System.in);
-        Scanner scan = new Scanner(System.in);
     }
 
     public void printWelcomeMessage() {
@@ -26,8 +25,6 @@ public class UI {
     }
 
     public String printMainMenu() throws PersonalizedException {
-        Scanner scan = new Scanner(System.in);
-
 
         System.out.println("\t1) List Characters");
         System.out.println("\t2) Manage Teams");
@@ -38,13 +35,23 @@ public class UI {
         System.out.println();
         System.out.print("Choose an option: ");
 
-        return scan.nextLine();
+        return scanner.nextLine();
     }
 
     public void printMenu() {
     }
 
-    public void printCharacterMenu() {
+    public String printListCharacters(List<String> characterNames) {
+        int i = 1;
+
+        for (String name : characterNames) {
+            System.out.println("\t" + i + ") " + name);
+            i++;
+        }
+
+        System.out.print("Choose an option: ");
+
+        return scanner.nextLine();
     }
 
     public void printTeamMenu() {
