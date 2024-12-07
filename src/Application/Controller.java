@@ -24,14 +24,6 @@ public class Controller {
         this.combatManager = combatManager;
     }
 
-    public UiManager getUiManager() {
-        return uiManager;
-    }
-
-    public void setUiManager(UiManager uiManager) {
-        this.uiManager = uiManager;
-    }
-
     public void run() {
         int menuOption;
         boolean filesOk = false;
@@ -45,7 +37,7 @@ public class Controller {
                 switch (menuOption) {
                     case 1 -> listCharacters();
                     case 2 -> manageTeams();
-                    case 3 -> listItems();
+                    case 3 -> listTeamsMenu();
                     case 4 -> simulateCombat();
                     case 5 -> ui.printMessage("Exiting...");
                 }
@@ -92,7 +84,7 @@ public class Controller {
 
     public void listCharacters() {
         System.out.println("TODO: IMPLEMENT PRINT TEAMS FROM SPECIFIC USER");
-        String input = "";
+        String input;
         int menuOption = -1;
 
         do {
@@ -102,9 +94,12 @@ public class Controller {
 
                 if (menuOption != 0) {
                     Character specificCharacter = characterManager.getSpecificCharacter(menuOption);
+                    ui.printCharacterInfo(specificCharacter);
                     // TODO MAKE THE PRINT CHARACTER INFO ALSO PRINT THE TEAMS THE CHARACTER MUST BE IN
                     // TODO: IMPLEMENT IN TEAM MENU THE ABILITY TO ADD A CHARACTER TO A TEAM, AND TO RETURN A LIST OF TEAMS CHAR IS IN
-                    ui.printCharacterInfo(specificCharacter);
+
+                    ui.printWaitKeyPress();
+
                 }
 
             } catch (Exception e) {
@@ -114,10 +109,52 @@ public class Controller {
     }
 
     public void manageTeams() {
+        String input;
+        int menuOption = -1;
+
+        do {
+            try {
+                input = ui.printTeamMenu();
+                menuOption = uiManager.checkUserInput(input, 0, 4);
+
+                switch (menuOption) {
+                    case 1 -> createTeamMenu();
+                    case 2 -> listTeamsMenu();
+                    case 3 -> deleteTeamMenu();
+                    case 4 -> ui.printMessage("Exiting team management menu..");
+                }
+            } catch (Exception e) {
+                ui.printMessage(e.getMessage()); ;
+            }
+        } while (menuOption != 4);
+
         System.out.println("TODO: Implement manageTeams");
     }
 
-    public void listItems() {
+    public void createTeamMenu() {
+        String teamName = ui.askForString("\nPlease enter the team's name: ");
+
+        try {
+            if (!teamManager.checkNameUnique (teamName)) {
+                ui.printMessage("We are sorry '" + teamName + "' is taken.");
+                return;
+            }
+            System.out.println("No name matched!!");
+        } catch (Exception e) {
+            ui.printMessage(e.getMessage());
+        }
+
+
+
+
+        System.out.println("TODO: Implement createTeamMenu");
+    }
+
+    public void listTeamsMenu() {
+        System.out.println("TODO: Implement listItems");
+    }
+
+    public void deleteTeamMenu() {
         System.out.println("TODO: Implement listItems");
     }
 

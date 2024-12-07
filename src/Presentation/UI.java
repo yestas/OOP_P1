@@ -1,10 +1,12 @@
 package Presentation;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 import Business.*;
 import Business.Character;
 import Business.CharacterMember;
 import Persistence.PersonalizedException;
+
 
 public class UI {
 
@@ -50,6 +52,9 @@ public class UI {
             i++;
         }
 
+        System.out.println();
+        System.out.println("\t0) Back");
+        System.out.println();
         System.out.print("Choose an option: ");
 
         return scanner.nextLine();
@@ -64,7 +69,27 @@ public class UI {
         System.out.println("TODO: IMPLEMENT TEAMS");
     }
 
-    public void printTeamMenu() {
+    public String printTeamMenu() {
+        System.out.println();
+        System.out.println("Team Management.");
+        System.out.println("\t1) Create a Team");
+        System.out.println("\t2) List a Team");
+        System.out.println("\t3) Delete a Team");
+        System.out.println();
+        System.out.println("\t4) Exit");
+        System.out.println();
+        System.out.print("Choose an option: ");
+
+        return scanner.nextLine();
+    }
+
+    public void printWaitKeyPress() throws IOException {
+
+        System.out.println();
+        System.out.println("<Press enter to continue...>");
+        scanner.nextLine();
+        System.out.println("TODO: Continue on any key press, not only enter");
+
     }
 
     public void printItemMenu() {
@@ -84,12 +109,12 @@ public class UI {
     }
 
     public int askForInt(String message) {
-        System.out.println(message);
+        System.out.print(message);
         return scanner.nextInt();
     }
 
     public String askForString(String message) {
-        System.out.println(message);
+        System.out.print(message);
         return scanner.nextLine();
     }
 

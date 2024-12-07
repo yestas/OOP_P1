@@ -2,6 +2,8 @@ package Business;
 
 import Persistence.TeamDAO;
 
+import java.io.FileNotFoundException;
+
 public class TeamManager {
     private TeamDAO teamDAO;
 
@@ -21,7 +23,7 @@ public class TeamManager {
     //    return teamDAO.getTeam();
     //}
 
-    public boolean checkNameUnique(String name) {
+    public boolean checkNameUnique(String name) throws FileNotFoundException {
         return teamDAO.checkNameUnique(name);
     }
 

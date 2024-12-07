@@ -22,6 +22,7 @@ public class Main {
         characterManager = new CharacterManager(new CharacterDAO());
         combatManager = new CombatManager(itemManager, teamManager, statisticsManager);
         statisticsManager = new StatisticManager(statisticDAO);
+        teamManager = new TeamManager(new TeamDAO());
         itemManager = new ItemManager(itemDAO);
         controller = new Controller(ui, uiManager, characterManager, teamManager, itemManager, statisticsManager, combatManager);
 
