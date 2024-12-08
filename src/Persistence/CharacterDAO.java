@@ -10,8 +10,12 @@ import java.util.Scanner;
 import Business.Character;
 
 public class CharacterDAO extends BaseDAO<Character> {
+    public CharacterDAO() {
+        this.filename = "data/characters.json";
+    }
+
     public void checkFile() throws PersonalizedException {
-        File file = new File("src/data/characters.json");
+        File file = new File(filename);
 
         try {
             Scanner scan = new Scanner(file);
@@ -51,7 +55,7 @@ public class CharacterDAO extends BaseDAO<Character> {
     }
 
     public List<Character> getAll() throws FileNotFoundException {
-        File file = new File("src/data/characters.json");
+        File file = new File(filename);
 
         Scanner scan = new Scanner(file);
         StringBuilder fileContent = new StringBuilder();

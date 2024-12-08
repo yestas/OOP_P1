@@ -2,19 +2,19 @@ package Persistence;
 import Business.Team;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class TeamDAO extends BaseDAO<Team> {
+    
+    public TeamDAO() {
+        this.filename = "data/teams.json";
+    }
+
     public boolean createFile() {
         return false;
     }
@@ -34,7 +34,7 @@ public class TeamDAO extends BaseDAO<Team> {
     }
 
     public List<Team> getAll() throws FileNotFoundException {
-        File file = new File("src/data/teams.json");
+        File file = new File(filename);
 
         Scanner scan = new Scanner(file);
         StringBuilder fileContent = new StringBuilder();
@@ -59,7 +59,7 @@ public class TeamDAO extends BaseDAO<Team> {
     }
 
     public boolean checkNameUnique(String name) throws FileNotFoundException {
-        File file = new File("src/data/teams.json");
+        File file = new File(filename);
 
         Scanner scan = new Scanner(file);
         StringBuilder fileContent = new StringBuilder();
