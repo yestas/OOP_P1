@@ -45,10 +45,9 @@ public class TeamDAO extends BaseDAO<Team> {
     public void save(Team data) {
     }
 
-    public Team getById(int id) {
-        return null;
-    }
 
+
+    // TODO: FIX SO IT DESERIALIZES THE TEAM MEMBERS CORRECTLY
     public List<Team> getAll() throws FileNotFoundException {
         File file = new File(filename);
 

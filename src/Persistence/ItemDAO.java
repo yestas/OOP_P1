@@ -17,7 +17,7 @@ public class ItemDAO extends BaseDAO<Item> {
         this.filename = "data/items.json";
     }
 
-    public boolean checkFile() {
+    public boolean checkFile() throws PersonalizedException {
         File file = new File(filename);
 
         try {
@@ -39,15 +39,13 @@ public class ItemDAO extends BaseDAO<Item> {
             return true;
 
         } catch (FileNotFoundException e) {
-            System.err.println("ERROR: 'items.json' file not found!");
-            return false;
+            throw new PersonalizedException("ERROR: 'items.json' file not found!");
         } catch (JsonSyntaxException e) {
-            System.err.println("ERROR: 'items.json' doesn't have the correct format!");
-            return false;
+            throw new PersonalizedException("ERROR: 'items.json' doesn't have the correct format!");
         }
     }
 
-    public Item getItemById(int id) {
+    public Item getItemById(int id) throws PersonalizedException {
         try {
             List<Item> items = getAllItems();
             for (Item item : items) {
@@ -56,7 +54,7 @@ public class ItemDAO extends BaseDAO<Item> {
                 }
             }
         } catch (FileNotFoundException e) {
-            System.err.println("ERROR: 'items.json' file not found!");
+            throw new PersonalizedException("ERROR: 'items.json' file not found!");
         }
         return null;
     }
@@ -91,10 +89,6 @@ public class ItemDAO extends BaseDAO<Item> {
     }
 
     public void save(Item data) {
-    }
-
-    public Item getById(int id) {
-        return getItemById(id);
     }
 
 }

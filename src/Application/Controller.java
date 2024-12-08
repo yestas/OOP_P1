@@ -87,12 +87,11 @@ public class Controller {
 
     public void listCharacters() {
         System.out.println("TODO: IMPLEMENT PRINT TEAMS FROM SPECIFIC USER");
-        String input;
         int menuOption = -1;
 
         do {
             try {
-                input = ui.printListCharacters(characterManager.getAllCharacterNames());
+                String input = ui.printListCharacters(characterManager.getAllCharacterNames());
                 menuOption = uiManager.checkUserInput(input, 0, characterManager.getAllCharacterLength());
 
                 if (menuOption != 0) {

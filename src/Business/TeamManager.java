@@ -12,9 +12,6 @@ public class TeamManager {
         this.teamDAO = dao;
     }
 
-    public boolean teamsExists() {
-        return teamDAO.teamsExists();
-    }
 
     public void createTeam(String teamname, TeamMember[] teamMembers) throws FileNotFoundException {
         try {
@@ -26,9 +23,6 @@ public class TeamManager {
         }
     }
 
-    public List<Team> getTeamsByCharacter(Character character) throws FileNotFoundException {
-        return teamDAO.getTeamsByCharacter(character);
-    }
 
     public List<Team> getAllTeams() throws FileNotFoundException {
         return teamDAO.getAll();
@@ -38,15 +32,13 @@ public class TeamManager {
         return getAllTeams().get(id - 1);
     }
 
-    //public Team getTeam() {
-    //    return teamDAO.getTeam();
-    //}
 
     public boolean checkNameUnique(String name) throws FileNotFoundException {
         return teamDAO.checkNameUnique(name);
     }
 
-    public boolean deleteTeam(Team team) {
-        return teamDAO.deleteTeam(team);
-    }
+    // TODO: Implement deleteTeam
+    //public boolean deleteTeam(Team team) {
+    //    return teamDAO.deleteTeam(team);
+    //}
 }
