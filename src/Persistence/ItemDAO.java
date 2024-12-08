@@ -78,7 +78,6 @@ public class ItemDAO extends BaseDAO<Item> {
         Gson gson = new Gson();
         List<Item> items = gson.fromJson(cleanedContent, new TypeToken<List<Item>>(){}.getType());
         
-        // Resolve item types after parsing
         for (Item item : items) {
             item.resolveItemType();
         }

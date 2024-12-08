@@ -43,7 +43,6 @@ public class StatisticDAO extends BaseDAO<Statistic> {
             }
 
             Gson gson = new Gson();
-            // Try parsing to ensure format is correct
             gson.fromJson(cleanedContent, new TypeToken<List<Statistic>>(){}.getType());
 
         } catch (FileNotFoundException e) {

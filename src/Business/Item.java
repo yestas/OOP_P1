@@ -18,16 +18,15 @@ public class Item {
         this.itemType = itemType;
     }
 
-    public Item() {} // for gson if needed 
+    public Item() {} 
 
     public void resolveItemType() {
         if (className != null) {
             if (className.equalsIgnoreCase("Weapon")) {
                 itemType = Type.WEAPON;
             } else if (className.equalsIgnoreCase("Armor")) {
-                itemType = Type.ARMOR;
+                itemType = Type.ARMOUR;
             } else {
-                // Default or unknown type handling
                 itemType = null;
             }
         }
