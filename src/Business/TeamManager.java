@@ -26,6 +26,10 @@ public class TeamManager {
         }
     }
 
+    public List<Team> getTeamsByCharacter(Character character) throws FileNotFoundException {
+        return teamDAO.getTeamsByCharacter(character);
+    }
+
     public List<Team> getAllTeams() throws FileNotFoundException {
         return teamDAO.getAll();
     }

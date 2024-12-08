@@ -96,13 +96,17 @@ public class Controller {
                 menuOption = uiManager.checkUserInput(input, 0, characterManager.getAllCharacterLength());
 
                 if (menuOption != 0) {
-                    Character specificCharacter = characterManager.getCharacterById(menuOption);
+                    Character specificCharacter = characterManager.getCharacterByListId(menuOption);
+                    //List<Team> teams = teamManager.getTeamsByCharacter(specificCharacter);
+                    //System.out.println("Teams: ");
+                    //for (Team team : teams) {
+                    //    System.out.println(team.getName());
+                    //}
                     ui.printCharacterInfo(specificCharacter);
                     // TODO MAKE THE PRINT CHARACTER INFO ALSO PRINT THE TEAMS THE CHARACTER MUST BE IN
                     // TODO: IMPLEMENT IN TEAM MENU THE ABILITY TO ADD A CHARACTER TO A TEAM, AND TO RETURN A LIST OF TEAMS CHAR IS IN
 
                     ui.printWaitKeyPress();
-
                 }
 
             } catch (Exception e) {
@@ -180,7 +184,6 @@ public class Controller {
             }
 
             try {
-                System.out.println("Trying to create team");
                 teamManager.createTeam(teamName, teamCharacters);
 
             } catch (Exception e) {

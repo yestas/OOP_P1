@@ -63,6 +63,14 @@ public class CharacterManager {
         }
     }
 
+    public Character getCharacterByListId(int id) throws PersonalizedException {
+        try {
+            return characterDAO.getAll().get(id - 1);
+        } catch (Exception e) {
+            throw new PersonalizedException("Character with ID '" + id + "' not found.");
+        }
+    }
+
 
     public Character getCharacterById(long characterId) throws FileNotFoundException, PersonalizedException {
         List<Character> characterList = characterDAO.getAll();

@@ -1,4 +1,5 @@
 package Persistence;
+import Business.Character;
 import Business.Team;
 
 import Business.TeamMember;
@@ -27,8 +28,18 @@ public class TeamDAO extends BaseDAO<Team> {
     public void addTeam(Team data) {
     }
 
-    public List<Team> getTeamsByCharacter(Character data) {
-        return null;
+    public List<Team> getTeamsByCharacter(Character character) throws FileNotFoundException {
+        List<Team> teams = new ArrayList<>();
+        List<Team> allTeams = getAll();
+
+        for (Team team : allTeams) {
+            for (TeamMember member : team.getMembers()) {
+                if (member.getCharacterMember().getId() == character.getId()) {
+                    teams.add(team);
+                }
+            }
+        }
+        return teams;
     }
 
     public void save(Team data) {
