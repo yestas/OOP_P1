@@ -39,7 +39,7 @@ public class Controller {
                 switch (menuOption) {
                     case 1 -> listCharacters();
                     case 2 -> manageTeams();
-                    case 3 -> listTeamsMenu();
+                    case 3 -> listItemsMenu();
                     case 4 -> simulateCombat();
                     case 5 -> ui.printMessage("Exiting...");
                 }
@@ -212,11 +212,10 @@ public class Controller {
 
             }
 
-
         } catch (Exception e) {
             ui.printMessage(e.getMessage());
         }
-        System.out.println("TODO: Implement listItems");
+        // TODO: Implement listItems
     }
 
     public void deleteTeamMenu() {
