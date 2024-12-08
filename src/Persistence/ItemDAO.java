@@ -1,6 +1,8 @@
 package Persistence;
 import Business.Item;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 
 public class ItemDAO extends BaseDAO<Item> {
@@ -17,6 +19,11 @@ public class ItemDAO extends BaseDAO<Item> {
     }
 
     public void save(Item data) {
+    }
+
+    @Override
+    public void writeFile(String json) {
+
     }
 
     public Item getById(int id) {

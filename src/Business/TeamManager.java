@@ -15,8 +15,16 @@ public class TeamManager {
         return teamDAO.teamsExists();
     }
 
-    public boolean createTeam(Team team) {
-        return teamDAO.createTeam(team);
+    public void createTeam(String teamname, TeamMember[] teamMembers) throws FileNotFoundException {
+        try {
+            Team newTeam = new Team(teamname, teamMembers);
+            System.out.println("Team object created: " + newTeam.getName() + "Sending to dao");
+            teamDAO.addTeamToFile(newTeam);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 
     //public Team getTeam() {

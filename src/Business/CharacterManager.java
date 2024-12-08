@@ -37,13 +37,45 @@ public class CharacterManager {
         return characters.size();
     }
 
+    public boolean isLong(String str) {
+        try {
+            Long.parseLong(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    /* Check if input matches with any ID, if it doesn't match it will check if it matches with any name */
+    public Character getCharacterByIdName(String idName) throws FileNotFoundException, PersonalizedException {
+        try {
+
+            if (isLong(idName)) {
+                long characterId = Long.parseLong(idName);
+
+                return getCharacterById(characterId);
+            }
+
+            return getCharacterByName(idName);
+
+        } catch (Exception e) {
+            throw new PersonalizedException("Character with ID or name '" + idName + "' not found.");
+        }
+    }
 
 
-    public Character getSpecificCharacter(int orderId) throws FileNotFoundException, PersonalizedException {
+    public Character getCharacterById(long characterId) throws FileNotFoundException, PersonalizedException {
         List<Character> characterList = characterDAO.getAll();
 
-        long selectedCharacterId = characterList.get(orderId - 1).getId();
+        return characterDAO.getById(characterId, characterList);
+    }
 
-        return characterDAO.getById(selectedCharacterId, characterList);
+    public Character getCharacterByName(String name) throws FileNotFoundException, PersonalizedException {
+        List<Character> characterList = characterDAO.getAll();
+        return characterDAO.getByName(name, characterList);
+    }
+
+    public Strategy checkStrategy(int strategyInput) {
+        return Strategy.getStrategy(strategyInput);
     }
 }

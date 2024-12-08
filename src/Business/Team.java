@@ -2,22 +2,12 @@ package Business;
 import java.util.List;
 
 public class Team {
-    private long id;
     private String name;
-    private List<TeamMember> members;
+    private TeamMember[] members;
 
-    public Team(long id, String name, List<TeamMember> members) {
-        this.id = id;
+    public Team(String name, TeamMember[] members) {
         this.name = name;
         this.members = members;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -28,11 +18,11 @@ public class Team {
         this.name = name;
     }
 
-    public List<TeamMember> getMembers() {
+    public TeamMember[] getMembers() {
         return members;
     }
 
-    public void setMembers(List<TeamMember> members) {
+    public void setMembers(TeamMember[] members) {
         this.members = members;
     }
 }

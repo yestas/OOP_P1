@@ -5,6 +5,9 @@ import Business.Character;
 import Presentation.*;
 import Persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Controller {
     private UI ui;
     private UiManager uiManager;
@@ -93,7 +96,7 @@ public class Controller {
                 menuOption = uiManager.checkUserInput(input, 0, characterManager.getAllCharacterLength());
 
                 if (menuOption != 0) {
-                    Character specificCharacter = characterManager.getSpecificCharacter(menuOption);
+                    Character specificCharacter = characterManager.getCharacterById(menuOption);
                     ui.printCharacterInfo(specificCharacter);
                     // TODO MAKE THE PRINT CHARACTER INFO ALSO PRINT THE TEAMS THE CHARACTER MUST BE IN
                     // TODO: IMPLEMENT IN TEAM MENU THE ABILITY TO ADD A CHARACTER TO A TEAM, AND TO RETURN A LIST OF TEAMS CHAR IS IN
@@ -139,7 +142,52 @@ public class Controller {
                 ui.printMessage("We are sorry '" + teamName + "' is taken.");
                 return;
             }
-            System.out.println("No name matched!!");
+
+            int characterNum = 1;
+            TeamMember[] teamCharacters = new TeamMember[4];
+
+            while (characterNum != 5) {
+                try {
+                    CharacterMember characterMember = null;
+                    while (characterMember == null) {
+                        try {
+                            String idNameInput = ui.askForString("Please enter the id or name of character #" + characterNum + ": ");
+                            characterMember = new CharacterMember(characterManager.getCharacterByIdName(idNameInput)); // Create CharacterMember from found Character
+                        } catch (Exception e) {
+                            ui.printMessage(e.getMessage());
+                        }
+                    }
+
+                    Strategy strategy = null;
+                    while (strategy == null) {
+                        try {
+                            int strategyInput = ui.askForStrategy("Game strategy for character #" + characterNum + "?");
+                            strategy = characterManager.checkStrategy(strategyInput);
+                        } catch (Exception e) {
+                            ui.printMessage(e.getMessage());
+                        }
+                    }
+
+                    // System.out.println("Strategy: " + strategy);
+                    System.out.println();
+                    teamCharacters[characterNum - 1] = new TeamMember(characterMember, strategy); // Add the character to the team
+                    characterNum++;
+
+                } catch (Exception e) {
+                    ui.printMessage(e.getMessage());
+                }
+            }
+
+            try {
+                System.out.println("Trying to create team");
+                teamManager.createTeam(teamName, teamCharacters);
+
+            } catch (Exception e) {
+                ui.printMessage(e.getMessage());
+            }
+
+
+
         } catch (Exception e) {
             ui.printMessage(e.getMessage());
         }

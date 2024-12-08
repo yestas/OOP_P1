@@ -4,6 +4,8 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import java.lang.reflect.Type;
 
@@ -27,9 +29,14 @@ public abstract class BaseDAO<T> implements DAO<T> {
         return gson.fromJson(fileContent.toString(), listType);
     }
 
-    public void writeFile(Gson data) throws FileNotFoundException {
+    public void writeFile(String jsonString) throws FileNotFoundException {
         File file = new File(filename);
-        Scanner scan = new Scanner(file);
+
+        try (FileWriter fileWriter = new FileWriter(file, true)) {
+            fileWriter.write(jsonString + System.lineSeparator());
+        } catch (IOException e) {
+            throw new RuntimeException("Error writing to file", e);
+        }
     }
 
     public int getNextId() {
@@ -46,4 +53,5 @@ public abstract class BaseDAO<T> implements DAO<T> {
     public List<T> getAll() throws FileNotFoundException {
         return null;
     }
+
 }

@@ -9,10 +9,19 @@ public class CharacterMember extends Character {
     public CharacterMember(int id, String name, double weight, float accumulatedDamage, float knockout, float damageReduction, boolean isEliminated) {
         super(id, name, weight);
 
-        this.accumulatedDamage = accumulatedDamage;
-        this.knockout = knockout;
-        this.damageReduction = damageReduction;
-        this.isEliminated = isEliminated;
+        this.accumulatedDamage = 0;
+        this.knockout = 0;
+        this.damageReduction = 0;
+        this.isEliminated = false;
+    }
+
+    public CharacterMember(Character character) {
+        super(character.getId(), character.getName(), character.getWeight());
+
+        this.accumulatedDamage = 0;
+        this.knockout = 0;
+        this.damageReduction = 0;
+        this.isEliminated = false;
     }
 
     public float getAccumulatedDamage() {

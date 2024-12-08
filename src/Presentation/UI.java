@@ -113,6 +113,19 @@ public class UI {
         return scanner.nextInt();
     }
 
+    public int askForStrategy(String message) {
+        System.out.println(message);
+        int i = 1;
+        for (Strategy strategy : Strategy.values()) {
+            System.out.println("\t" + i + ") " + strategy);
+            i++;
+        }
+
+        System.out.print("\n\tChoose an option: ");
+
+        return Integer.parseInt(scanner.nextLine()); // Grab as string and then parse to avoid scanning enter
+    }
+
     public String askForString(String message) {
         System.out.print(message);
         return scanner.nextLine();

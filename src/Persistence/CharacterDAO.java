@@ -5,6 +5,8 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 import Business.Character;
@@ -40,13 +42,29 @@ public class CharacterDAO extends BaseDAO<Character> {
         }
     }
 
+    @Override
+    public void writeFile(String json) {
+
+    }
+
     public void save(Character data) {
     }
 
     public Character getById(long id, List<Character> characters) throws PersonalizedException {
 
         for (Character character : characters) {
+            // System.out.println("Character id: " + character.getId() + "Id Compared: " + id);
             if (character.getId() == id) {
+                return character;
+            }
+        }
+
+        throw new PersonalizedException("ERROR: Character not found!");
+    }
+
+    public Character getByName(String name, List<Character> characters) throws PersonalizedException {
+        for (Character character : characters) {
+            if (character.getName().equals(name)) {
                 return character;
             }
         }

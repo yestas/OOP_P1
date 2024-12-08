@@ -62,4 +62,25 @@
       }
     ]
   }
+,{
+  "name": "LS Pand",
+  "members": [
+    {
+      "id": 467416287,
+      "strategy": "balanced"
+    },
+    {
+      "id": 467416287,
+      "strategy": "balanced"
+    },
+    {
+      "id": 467416287,
+      "strategy": "balanced"
+    },
+    {
+      "id": 467416287,
+      "strategy": "balanced"
+    }
+  ]
+}
 ]

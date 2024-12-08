@@ -1,13 +1,18 @@
 package Persistence;
 import Business.Team;
 
+import Business.TeamMember;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.List;
-import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
+
+import Business.Strategy;
 
 public class TeamDAO extends BaseDAO<Team> {
     
@@ -90,12 +95,67 @@ public class TeamDAO extends BaseDAO<Team> {
     //    return Team;
     //}
 
-    public boolean createTeam(Team team) {
+    public void addTeamToFile(Team team) {
+        Gson gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .create();
 
+        String name = team.getName();
+        TeamMember[] members = team.getMembers();
 
-        return false;
+        List<Map<String, Object>> membersInfo = new ArrayList<>();
+        for (TeamMember member : members) {
+            Map<String, Object> memberData = new HashMap<>();
+            memberData.put("id", member.getCharacterMember().getId());
+            memberData.put("strategy", member.getStrategy());
+            membersInfo.add(memberData);
+        }
+
+        String jsonString = gson.toJson(
+                Map.of(
+                        "name", name,
+                        "members", membersInfo
+                )
+        );
+
+        this.writeFile(jsonString);
+
     }
 
+    @Override
+    public void writeFile(String jsonString) {
+        try (FileWriter fileWriter = new FileWriter(filename, true)) {
+            File file = new File(filename);
+
+            StringBuilder fileContent = new StringBuilder();
+            if (file.exists()) {
+                try (Scanner scan = new Scanner(file)) {
+                    while (scan.hasNextLine()) {
+                        fileContent.append(scan.nextLine()).append(System.lineSeparator());
+                    }
+                }
+            }
+
+            String content = fileContent.toString();
+            int arrayStartIndex = content.indexOf('[');
+            int arrayEndIndex = content.lastIndexOf(']');
+
+            if (arrayStartIndex != -1 && arrayEndIndex != -1) {
+                String existingArray = content.substring(arrayStartIndex, arrayEndIndex + 1);
+                String updatedArray = existingArray.substring(0, existingArray.length() - 1) + "," + jsonString + "\n]";
+                content = content.substring(0, arrayStartIndex) + updatedArray;
+            } else {
+                content = "[" + jsonString + "]";
+            }
+
+            try (FileWriter writer = new FileWriter(filename, false)) {
+                writer.write(content);
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException("Error writing to file", e);
+        }
+    }
     public boolean teamsExists() {
         return false;
     }

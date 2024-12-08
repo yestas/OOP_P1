@@ -5,7 +5,7 @@ public class Character {
     private String name;
     private double weight;
 
-    public Character(int id, String name, double weight) {
+    public Character(long id, String name, double weight) {
         this.id = id;
         this.name = name;
         this.weight = weight;

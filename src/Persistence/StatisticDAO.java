@@ -1,6 +1,8 @@
 package Persistence;
 import Business.Statistic;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 
 public class StatisticDAO extends BaseDAO<Statistic> {
@@ -24,5 +26,9 @@ public class StatisticDAO extends BaseDAO<Statistic> {
 
     public List<Statistic> getAll() {
         return null;
+    }
+
+    @Override
+    public void writeFile(String json) {
     }
 }
