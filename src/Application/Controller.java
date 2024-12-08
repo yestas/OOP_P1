@@ -5,7 +5,6 @@ import Business.Character;
 import Presentation.*;
 import Persistence.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
@@ -179,7 +178,7 @@ public class Controller {
             }
 
             try {
-                System.out.println("Trying to create team");
+                //System.out.println("Trying to create team");
                 teamManager.createTeam(teamName, teamCharacters);
 
             } catch (Exception e) {
@@ -192,13 +191,31 @@ public class Controller {
             ui.printMessage(e.getMessage());
         }
 
-
-
-
         System.out.println("TODO: Implement createTeamMenu");
     }
 
     public void listTeamsMenu() {
+        try {
+            List<Team> teams = teamManager.getAllTeams();
+            if (teams.isEmpty()) {
+                ui.printMessage("No teams found.");
+                return;
+            } else {
+                ui.printTeams(teams);
+                int teamOption = uiManager.checkUserInput(ui.askForString("Choose an option: "), 0, teams.size());
+
+                if (teamOption == 0) {
+                    return;
+                }
+
+                ui.printTeamInfo(teams.get(teamOption - 1));
+
+            }
+
+
+        } catch (Exception e) {
+            ui.printMessage(e.getMessage());
+        }
         System.out.println("TODO: Implement listItems");
     }
 

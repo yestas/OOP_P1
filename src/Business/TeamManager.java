@@ -3,6 +3,7 @@ package Business;
 import Persistence.TeamDAO;
 
 import java.io.FileNotFoundException;
+import java.util.List;
 
 public class TeamManager {
     private TeamDAO teamDAO;
@@ -18,13 +19,15 @@ public class TeamManager {
     public void createTeam(String teamname, TeamMember[] teamMembers) throws FileNotFoundException {
         try {
             Team newTeam = new Team(teamname, teamMembers);
-            System.out.println("Team object created: " + newTeam.getName() + "Sending to dao");
+            // System.out.println("Team object created: " + newTeam.getName() + "Sending to dao");
             teamDAO.addTeamToFile(newTeam);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
 
-
+    public List<Team> getAllTeams() throws FileNotFoundException {
+        return teamDAO.getAll();
     }
 
     //public Team getTeam() {
