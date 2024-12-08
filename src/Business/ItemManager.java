@@ -21,9 +21,13 @@ public class ItemManager {
         }
     }
 
+    public List<Item> getAllItems() throws FileNotFoundException {
+        return itemDAO.getAllItems();
+    }
+
     public List<String> getAllItemNames() throws FileNotFoundException {
         List<String> names = new ArrayList<>();
-        List<Item> items = getAllItems();
+        List<Item> items = itemDAO.getAllItems();
         for (Item item : items) {
             names.add(item.getName());
         }
@@ -56,7 +60,7 @@ public class ItemManager {
     }
 
     public Item getRandomWeapon() throws FileNotFoundException {
-        List<Item> items = getAllItems();
+        List<Item> items = itemDAO.getAllItems();
         List<Item> weapons = new ArrayList<>();
         for (Item item : items) {
             if (item.getItemType() == Type.WEAPON) {
@@ -70,7 +74,7 @@ public class ItemManager {
     }
 
     public Item getRandomArmour() throws FileNotFoundException {
-        List<Item> items = getAllItems();
+        List<Item> items = itemDAO.getAllItems();
         List<Item> armours = new ArrayList<>();
         for (Item item : items) {
             if (item.getItemType() == Type.ARMOUR) {

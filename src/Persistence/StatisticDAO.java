@@ -74,9 +74,6 @@ public class StatisticDAO extends BaseDAO<Statistic> {
         throw new PersonalizedException("ERROR: Statistic for team '" + name + "' not found!");
     }
 
-    public List<Statistic> getAll() {
-        return null;
-    }
 
     public List<Statistic> getAll() throws FileNotFoundException {
         File file = new File(filename);
