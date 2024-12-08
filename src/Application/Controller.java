@@ -5,8 +5,6 @@ import Business.Character;
 import Presentation.*;
 import Persistence.*;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
@@ -34,7 +32,7 @@ public class Controller {
 
         ui.printWelcomeMessage();
 
-        if (checkCharactersFile()) {
+        if (checkFilesExist()) {
             do {
                 menuOption = displayMainMenu();
 
@@ -52,10 +50,11 @@ public class Controller {
         }
     }
 
-    public boolean checkCharactersFile() {
+    public boolean checkFilesExist() {
         try {
             ui.printMessage("Verifying local files...");
             characterManager.checkFileExists();
+            itemManager.checkFileExists();
             ui.printMessage("Files OK!");
             ui.printMessage("Starting program...\n");
 
@@ -233,11 +232,43 @@ public class Controller {
     }
 
     public void deleteTeamMenu() {
-        System.out.println("TODO: Implement listItems");
+        // TODO: Implement deleteTeamMenu
+        System.out.println("TODO: Implement deleteTeamMenu");
     }
 
     public void simulateCombat() {
-        System.out.println("TODO: Implement simulateCombat");
+        ui.printMessage("\nStarting simulation...");
+        ui.printMessage("Looking for available teams...\n");
+        try {
+            int team1Id = 0, team2Id = 0;
+            do {
+                int teamNum = teamManager.getAllTeams().size();
+
+                ui.printTeamsBattle(teamManager.getAllTeams());
+                team1Id = uiManager.checkUserInput(ui.askForString("Choose team #1: "), 1, teamNum);
+                team2Id = uiManager.checkUserInput(ui.askForString("Choose team #2: "), 1, teamNum);
+
+                if (team1Id == team2Id) {
+                    ui.printMessage("\nTeams must be different! Please  choose again.\n");
+                    team1Id = 0;
+                    team2Id = 0;
+                }
+
+            } while (team1Id == 0 || team2Id == 0);
+
+            Team team_1 = teamManager.getTeamByListId(team1Id);
+            Team team_2 = teamManager.getTeamByListId(team2Id);
+
+            ui.printMessage("\nInitializing teams...\n");
+
+            combatManager.prepareCombat(team_1, team_2);
+
+
+
+
+        } catch (Exception e) {
+            ui.printMessage(e.getMessage());
+        }
     }
 
     public void createTeam(String name, int[] members) {

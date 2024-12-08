@@ -30,6 +30,10 @@ public class TeamManager {
         return teamDAO.getAll();
     }
 
+    public Team getTeamByListId(int id) throws FileNotFoundException {
+        return getAllTeams().get(id - 1);
+    }
+
     //public Team getTeam() {
     //    return teamDAO.getTeam();
     //}

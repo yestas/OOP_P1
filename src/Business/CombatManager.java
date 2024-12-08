@@ -11,7 +11,10 @@ public class CombatManager {
         this.statisticsManager = statisticsManager;
     }
 
-    public void prepareCombat() {
+    public void prepareCombat(Team team1, Team team2) {
+        System.out.println("TODO: Implement prepareCombat");
+        // TODO: Implement prepareCombat
+
     }
 
     public void startCombat() {

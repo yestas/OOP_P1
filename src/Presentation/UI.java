@@ -141,6 +141,16 @@ public class UI {
         System.out.println("\n\t0) Back\n");
     }
 
+    public void printTeamsBattle(List<Team> teams) {
+        int i = 1;
+        System.out.println();
+        for (Team team : teams) {
+            System.out.println("\t" + i + ") " + team.getName());
+            i++;
+        }
+        System.out.println();
+    }
+
     public void printTeamInfo(Team team) {
         System.out.println("\n\tTeam name: " + team.getName());
         System.out.println();

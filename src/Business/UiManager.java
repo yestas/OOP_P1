@@ -10,9 +10,9 @@ public class UiManager {
         try {
             int option = Integer.parseInt(userInput);
 
-            if (userInput.isEmpty()) { // Check if the user input is empty
+            if (userInput.isEmpty()) {
                 throw new PersonalizedException("\nERROR: User input cannot be empty.\n");
-            } else if (option < min || option > max) { // Check if the user input is within the range
+            } else if (option < min || option > max) {
                 throw new PersonalizedException("\nERROR: Option is invalid as it is out of range! Valid range [" + min + " - " + max + "]\n");
             } else {
                 return option;
