@@ -1,10 +1,13 @@
 package Business;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Item {
     private int id;
     private String name;
     private int power;
     private int durability;
+    private String className; 
     private Type itemType;
 
     public Item(int id, String name, int power, int durability, Type itemType) {
@@ -15,7 +18,42 @@ public class Item {
         this.itemType = itemType;
     }
 
+    public Item() {} 
+
+    public void resolveItemType() {
+        if (className != null) {
+            if (className.equalsIgnoreCase("Weapon")) {
+                itemType = Type.WEAPON;
+            } else if (className.equalsIgnoreCase("Armor")) {
+                itemType = Type.ARMOUR;
+            } else {
+                itemType = null;
+            }
+        }
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPower() {
+        return power;
+    }
+
+    public int getDurability() {
+        return durability;
+    }
+
+    public Type getItemType() {
+        return itemType;
+    }
+
     public String toString() {
         return name;
     }
+
 }
