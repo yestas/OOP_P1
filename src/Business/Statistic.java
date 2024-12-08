@@ -14,5 +14,26 @@ public class Statistic {
         this.koDone = koDone;
         this.koReceived = koReceived;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getGamesPlayed() {
+        return gamesPlayed;
+    }
+
+    public int getGamesWon() {
+        return gamesWon;
+    }
+
+    public int getKoDone() {
+        return koDone;
+    }
+
+    public int getKoReceived() {
+        return koReceived;
+    }
+    
 }
 
