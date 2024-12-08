@@ -5,6 +5,7 @@ import Business.Character;
 import Presentation.*;
 import Persistence.*;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class Controller {
                 switch (menuOption) {
                     case 1 -> listCharacters();
                     case 2 -> manageTeams();
-                    case 3 -> listTeamsMenu();
+                    case 3 -> listItemsMenu();
                     case 4 -> simulateCombat();
                     case 5 -> ui.printMessage("Exiting...");
                 }
@@ -192,10 +193,21 @@ public class Controller {
             ui.printMessage(e.getMessage());
         }
 
-
-
-
         System.out.println("TODO: Implement createTeamMenu");
+    }
+
+    public void listItemsMenu() {
+        try {
+            int itemOption = 0;
+            List<Item> itemList = itemManager.getAllItems();
+            ui.listItems(itemList);
+            itemOption = uiManager.checkUserInput(ui.askForString("Choose an option: "), 0, itemList.size());
+            if (itemOption != 0) {
+                ui.printItemInfo(itemManager.getSpecificItem(itemOption));
+            }
+        } catch (Exception e) {
+            ui.printMessage(e.getMessage());
+        }
     }
 
     public void listTeamsMenu() {

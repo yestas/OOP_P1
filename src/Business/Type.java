@@ -1,6 +1,6 @@
 package Business;
 
 public enum Type {
-    WEAPON,
-    ARMOUR
+    Weapon,
+    Armor
 }

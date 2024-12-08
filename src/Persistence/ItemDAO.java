@@ -62,27 +62,32 @@ public class ItemDAO extends BaseDAO<Item> {
     }
 
     public List<Item> getAllItems() throws FileNotFoundException {
-        File file = new File(filename);
-        Scanner scan = new Scanner(file);
-        StringBuilder fileContent = new StringBuilder();
+        try {
+            File file = new File(filename);
+            Scanner scan = new Scanner(file);
+            StringBuilder fileContent = new StringBuilder();
 
-        while (scan.hasNextLine()) {
-            fileContent.append(scan.nextLine()).append("\n");
+            while (scan.hasNextLine()) {
+                fileContent.append(scan.nextLine()).append("\n");
+            }
+
+            String cleanedContent = fileContent.toString().trim();
+            if (cleanedContent.endsWith(",")) {
+                cleanedContent = cleanedContent.substring(0, cleanedContent.length() - 1);
+            }
+
+            Gson gson = new Gson();
+            List<Item> items = gson.fromJson(cleanedContent, new TypeToken<List<Item>>(){}.getType());
+
+            for (Item item : items) {
+                item.resolveItemType();
+            }
+
+            return items;
+        } catch (FileNotFoundException e) {
+            throw new FileNotFoundException("ERROR: 'items.json' is not present or incorrectly formatted!");
         }
 
-        String cleanedContent = fileContent.toString().trim();
-        if (cleanedContent.endsWith(",")) {
-            cleanedContent = cleanedContent.substring(0, cleanedContent.length() - 1);
-        }
-
-        Gson gson = new Gson();
-        List<Item> items = gson.fromJson(cleanedContent, new TypeToken<List<Item>>(){}.getType());
-        
-        for (Item item : items) {
-            item.resolveItemType();
-        }
-
-        return items;
     }
 
     public void save(Item data) {
@@ -92,12 +97,4 @@ public class ItemDAO extends BaseDAO<Item> {
         return getItemById(id);
     }
 
-    public List<Item> getAll() {
-        try {
-            return getAllItems();
-        } catch (FileNotFoundException e) {
-            System.err.println("ERROR: 'items.json' file not found!");
-            return null;
-        }
-    }
 }

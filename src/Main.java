@@ -13,17 +13,16 @@ public class Main {
     private static StatisticManager statisticsManager;
     private static TeamManager teamManager;
     private static ItemManager itemManager;
-    private static StatisticDAO statisticDAO;
-    private static ItemDAO itemDAO;
+
 
     public static void main(String[] args) {
         ui = new UI();
         uiManager = new UiManager();
         characterManager = new CharacterManager(new CharacterDAO());
         combatManager = new CombatManager(itemManager, teamManager, statisticsManager);
-        statisticsManager = new StatisticManager(statisticDAO);
+        statisticsManager = new StatisticManager(new StatisticDAO());
         teamManager = new TeamManager(new TeamDAO());
-        itemManager = new ItemManager(itemDAO);
+        itemManager = new ItemManager(new ItemDAO());
         controller = new Controller(ui, uiManager, characterManager, teamManager, itemManager, statisticsManager, combatManager);
 
         controller.run();

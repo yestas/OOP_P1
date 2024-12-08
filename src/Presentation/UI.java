@@ -66,7 +66,7 @@ public class UI {
         System.out.println("\tNAME: " + character.getName());
         System.out.println("\tWEIGHT: " + character.getWeight());
         System.out.println("TEAMS: ");
-        System.out.println("TODO: IMPLEMENT TEAMS");
+        // TODO: IMPLEMENT TEAMS
     }
 
     public String printTeamMenu() {
@@ -88,7 +88,7 @@ public class UI {
         System.out.println();
         System.out.println("<Press enter to continue...>");
         scanner.nextLine();
-        System.out.println("TODO: Continue on any key press, not only enter");
+        // TODO: Continue on any key press, not only enter
 
     }
 
@@ -138,6 +138,24 @@ public class UI {
     }
 
     public void listItems(List<Item> items) {
+        int i = 1;
+        System.out.println();
+        for (Item item : items) {
+            System.out.println("\t" + i + ") " + item.getName());
+            i++;
+        }
+        System.out.println("\n\t0) " + "Back");
+
+    }
+
+    public void printItemInfo(Item item) throws IOException {
+        System.out.println("\n\tID: " + item.getId());
+        System.out.println("\tNAME: " + item.getName());
+        System.out.println("\tCLASS: " + item.getClassName());
+        System.out.println("\tPOWER: " + item.getPower());
+        System.out.println("\tDURABILITY: " + item.getDurability());
+        System.out.println();
+        printWaitKeyPress();
     }
 
     public void listStatistics(List<Statistic> statistics) {

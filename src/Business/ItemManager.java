@@ -34,36 +34,25 @@ public class ItemManager {
         return names;
     }
 
-    public int getAllItemsLength() throws FileNotFoundException {
-        List<Item> items = itemDAO.getAll();
+    public long getAllItemsLength() throws FileNotFoundException {
+        List<Item> items = itemDAO.getAllItems();
         if (items == null) {
             return 0;
         }
         return items.size();
     }
 
-    public Item getSpecificItem(int orderId) throws FileNotFoundException, PersonalizedException {
-        List<Item> itemList = itemDAO.getAll();
+    public Item getSpecificItem(int orderId) throws FileNotFoundException {
+        List<Item> itemList = itemDAO.getAllItems();
 
-        if (orderId < 1 || orderId > itemList.size()) {
-            throw new PersonalizedException("ERROR: Invalid item order ID provided");
-        }
-
-        int selectedItemId = itemList.get(orderId - 1).getId();
-        Item foundItem = itemDAO.getById(selectedItemId);
-
-        if (foundItem == null) {
-            throw new PersonalizedException("ERROR: Item not found");
-        }
-
-        return foundItem;
+        return itemList.get(orderId - 1);
     }
 
     public Item getRandomWeapon() throws FileNotFoundException {
         List<Item> items = itemDAO.getAllItems();
         List<Item> weapons = new ArrayList<>();
         for (Item item : items) {
-            if (item.getItemType() == Type.WEAPON) {
+            if (item.getItemType() == Type.Weapon) {
                 weapons.add(item);
             }
         }
@@ -77,7 +66,7 @@ public class ItemManager {
         List<Item> items = itemDAO.getAllItems();
         List<Item> armours = new ArrayList<>();
         for (Item item : items) {
-            if (item.getItemType() == Type.ARMOUR) {
+            if (item.getItemType() == Type.Armor) {
                 armours.add(item);
             }
         }
