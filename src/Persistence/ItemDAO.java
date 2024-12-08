@@ -11,12 +11,22 @@ import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * ItemDAO class: Extends BaseDAO
+ */
 public class ItemDAO extends BaseDAO<Item> {
 
+    /**
+     * ItemDAO constructor
+     */
     public ItemDAO() {
         this.filename = "data/items.json";
     }
 
+    /**
+     * Check if file exists
+     * @throws PersonalizedException
+     */
     public boolean checkFile() throws PersonalizedException {
         File file = new File(filename);
 
@@ -45,6 +55,12 @@ public class ItemDAO extends BaseDAO<Item> {
         }
     }
 
+    /**
+     * Get item by id
+     * @param id: The id of the item.
+     * @return Item
+     * @throws PersonalizedException
+     */
     public Item getItemById(int id) throws PersonalizedException {
         try {
             List<Item> items = getAllItems();
@@ -59,6 +75,11 @@ public class ItemDAO extends BaseDAO<Item> {
         return null;
     }
 
+    /**
+     * Get all items
+     * @return List<Item>
+     * @throws FileNotFoundException
+     */
     public List<Item> getAllItems() throws FileNotFoundException {
         try {
             File file = new File(filename);

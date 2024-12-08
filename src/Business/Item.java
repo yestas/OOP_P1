@@ -1,5 +1,8 @@
 package Business;
 
+/**
+ * Entity class for the items.
+ */
 public class Item {
     private long id;
     private String name;
@@ -8,6 +11,14 @@ public class Item {
     private String className;
     private Type itemType;
 
+    /**
+     * Constructor for the Item class.
+     * @param id The id of the item.
+     * @param name The name of the item.
+     * @param power The power of the item.
+     * @param durability The durability of the item.
+     * @param itemType The type of the item.
+     */
     public Item(long id, String name, int power, int durability, Type itemType) {
         this.id = id;
         this.name = name;
@@ -16,6 +27,9 @@ public class Item {
         this.itemType = itemType;
     }
 
+    /**
+     * resolveItemType method to resolve the type of the item based on class name
+     */
     public void resolveItemType() {
         if (className != null) {
             if (className.equalsIgnoreCase("Weapon")) {

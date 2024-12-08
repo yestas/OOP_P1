@@ -10,11 +10,18 @@ import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * StatisticDAO class: Extends BaseDAO
+ */
 public class StatisticDAO extends BaseDAO<Statistic> {
 
+    /**
+     * StatisticDAO constructor
+     */
     public StatisticDAO() {
         this.filename = "data/stats.json";
     }
+
 
     public boolean createFile() {
         return false;
@@ -26,6 +33,10 @@ public class StatisticDAO extends BaseDAO<Statistic> {
     public void save(Statistic data) {
     }
 
+    /**
+     * Check if file exists
+     * @throws PersonalizedException
+     */
     public void checkFile() throws PersonalizedException {
         File file = new File(filename);
 
@@ -52,11 +63,21 @@ public class StatisticDAO extends BaseDAO<Statistic> {
         }
     }
 
-
+    /**
+     * Get statistic by id
+     * @param id: The id of the statistic.
+     * @return Statistic
+     */
     public Statistic getById(int id) {
         return null;
     }
 
+    /**
+     * Get statistic by team name
+     * @param name: The name of the team.
+     * @return Statistic
+     * @throws PersonalizedException
+     */
     public Statistic getByTeamName(String name) throws PersonalizedException {
         List<Statistic> allStats;
         try {
@@ -74,7 +95,11 @@ public class StatisticDAO extends BaseDAO<Statistic> {
         throw new PersonalizedException("ERROR: Statistic for team '" + name + "' not found!");
     }
 
-
+    /**
+     * Get all statistics
+     * @return List<Statistic>
+     * @throws FileNotFoundException
+     */
     public List<Statistic> getAll() throws FileNotFoundException {
         File file = new File(filename);
         Scanner scan = new Scanner(file);

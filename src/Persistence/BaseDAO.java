@@ -11,9 +11,17 @@ import java.lang.reflect.Type;
 
 import java.util.Scanner;
 
+/**
+ * BaseDAO class
+ * @param <T>: Generic Type
+ */
 public abstract class BaseDAO<T> implements DAO<T> {
     protected String filename;
 
+    /**
+     * Read file
+     * @return Gson: Gson object
+     */
     public Gson readFile() throws FileNotFoundException {
         File file = new File(filename);
         Scanner scan = new Scanner(file);
@@ -29,6 +37,11 @@ public abstract class BaseDAO<T> implements DAO<T> {
         return gson.fromJson(fileContent.toString(), listType);
     }
 
+    /**
+     * Write file
+     * @param jsonString: Json string
+     * @throws FileNotFoundException
+     */
     public void writeFile(String jsonString) throws FileNotFoundException {
         File file = new File(filename);
 
@@ -39,17 +52,35 @@ public abstract class BaseDAO<T> implements DAO<T> {
         }
     }
 
+    /**
+     * Get next id
+     * @return int
+     */
     public int getNextId() {
         return 0;
     }
 
+    /**
+     * Save data
+     * @param data: Data
+     */
     public void save(T data) {
     }
 
+    /**
+     * Get by id
+     * @param id: Id
+     * @return T
+     */
     public T getById(long id) {
         return null;
     }
 
+    /**
+     * Get all
+     * @return List<T>
+     * @throws FileNotFoundException
+     */
     public List<T> getAll() throws FileNotFoundException {
         return null;
     }

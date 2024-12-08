@@ -13,6 +13,11 @@ public class TeamMember {
         this.weapon = weapon;
     }
 
+    /**
+     * Constructor for the TeamMember class.
+     * @param characterMember The character member.
+     * @param strategy The strategy.
+     */
     public TeamMember(CharacterMember characterMember, Strategy strategy) {
         this.characterMember = characterMember;
         this.strategy = strategy;

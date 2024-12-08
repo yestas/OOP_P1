@@ -26,6 +26,9 @@ public class Controller {
         this.combatManager = combatManager;
     }
 
+    /**
+     * The main controller class that manages the flow of the application.
+     */
     public void run() {
         int menuOption;
         boolean filesOk = false;
@@ -50,6 +53,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Checks if the necessary files exist.
+     * @return boolean
+     */
     public boolean checkFilesExist() {
         try {
             ui.printMessage("Verifying local files...");
@@ -66,6 +73,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Displays the main menu and returns the user's choice.
+     * @return int
+     */
     public int displayMainMenu() {
         int menuOption = 0;
         boolean validInput = false;
@@ -85,6 +96,9 @@ public class Controller {
         return menuOption;
     }
 
+    /**
+     * Lists all characters in the characters.json file.
+     */
     public void listCharacters() {
         System.out.println("TODO: IMPLEMENT PRINT TEAMS FROM SPECIFIC USER");
         int menuOption = -1;
@@ -114,6 +128,9 @@ public class Controller {
         } while(menuOption != 0);
     }
 
+    /**
+     * Prints and handles the manage teams submenu.
+     */
     public void manageTeams() {
         String input;
         int menuOption = -1;
@@ -138,6 +155,9 @@ public class Controller {
         // TODO: DELETE TEAM MENU
     }
 
+    /**
+     * Asks for a team name and 4 characters to create a team.
+     */
     public void createTeamMenu() {
         String teamName = ui.askForString("\nPlease enter the team's name: ");
 
@@ -198,6 +218,9 @@ public class Controller {
         System.out.println("TODO: Implement createTeamMenu");
     }
 
+    /**
+     * Lists all items in the items.json file and allows to view details.
+     */
     public void listItemsMenu() {
         try {
             int itemOption = 0;
@@ -205,13 +228,16 @@ public class Controller {
             ui.listItems(itemList);
             itemOption = uiManager.checkUserInput(ui.askForString("Choose an option: "), 0, itemList.size());
             if (itemOption != 0) {
-                ui.printItemInfo(itemManager.getSpecificItem(itemOption));
+                ui.printItemInfo(itemManager.getItemByListId(itemOption));
             }
         } catch (Exception e) {
             ui.printMessage(e.getMessage());
         }
     }
 
+    /**
+     * Lists all teams in the teams.json file and allows to view details.
+     */
     public void listTeamsMenu() {
         try {
             List<Team> teams = teamManager.getAllTeams();
@@ -226,18 +252,25 @@ public class Controller {
                 }
 
                 ui.printTeamInfo(teams.get(teamOption - 1));
+                // TODO: Implement team members print
             }
         } catch (Exception e) {
             ui.printMessage(e.getMessage());
         }
-        // TODO: Implement listItems
+
     }
 
+    /**
+     * Deletes a team from the teams.json file.
+     */
     public void deleteTeamMenu() {
         // TODO: Implement deleteTeamMenu
         System.out.println("TODO: Implement deleteTeamMenu");
     }
 
+    /**
+     * Simulates a combat between two teams.
+     */
     public void simulateCombat() {
         ui.printMessage("\nStarting simulation...");
         ui.printMessage("Looking for available teams...\n");
@@ -264,31 +297,10 @@ public class Controller {
             ui.printMessage("\nInitializing teams...\n");
 
             combatManager.prepareCombat(team_1, team_2);
-
-
-
-
         } catch (Exception e) {
             ui.printMessage(e.getMessage());
         }
     }
-
-    public void createTeam(String name, int[] members) {
-
-    }
-
-    public void deleteTeam(int id) {
-
-    }
-
-    public void runOption (int option){
-
-    }
-
-    public void fetchInfo(int option){
-
-    }
-
 }
 
 

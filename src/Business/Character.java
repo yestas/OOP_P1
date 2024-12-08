@@ -1,10 +1,19 @@
 package Business;
 
+/**
+ * Entity class for the characters.
+ */
 public class Character {
     private long id;
     private String name;
     private double weight;
 
+    /**
+     * Constructor for the Character class.
+     * @param id The id of the character.
+     * @param name The name of the character.
+     * @param weight The weight of the character.
+     */
     public Character(long id, String name, double weight) {
         this.id = id;
         this.name = name;

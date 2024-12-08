@@ -2,11 +2,20 @@ package Business;
 
 import Persistence.PersonalizedException;
 
+/**
+ * UiManager class: Manages user inputs
+ */
 public class UiManager {
 
+    /**
+     * Checks if user input is valid, throws exception if not
+     * @param userInput: User input
+     * @param min: Minimum value
+     * @param max: Maximum value
+     * @return int
+     * @throws PersonalizedException
+     */
     public int checkUserInput(String userInput, int min, int max) throws PersonalizedException {
-
-
         try {
             int option = Integer.parseInt(userInput);
 

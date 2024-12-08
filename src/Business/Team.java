@@ -1,10 +1,14 @@
 package Business;
-import java.util.List;
 
 public class Team {
     private String name;
     private TeamMember[] members;
 
+    /**
+     * Constructor for the Team class.
+     * @param name The name of the team.
+     * @param members The members of the team.
+     */
     public Team(String name, TeamMember[] members) {
         this.name = name;
         this.members = members;

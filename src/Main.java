@@ -3,6 +3,9 @@ import Presentation.*;
 import Application.*;
 import Persistence.*;
 
+/**
+ * Main class: Entry point of the application
+ */
 public class Main {
 
     private static Controller controller;
@@ -14,7 +17,10 @@ public class Main {
     private static TeamManager teamManager;
     private static ItemManager itemManager;
 
-
+    /**
+     * Main method: Initializes all necessary objects and runs the application
+     * @param args
+     */
     public static void main(String[] args) {
         ui = new UI();
         uiManager = new UiManager();

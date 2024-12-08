@@ -1,12 +1,21 @@
 package Business;
 
+/**
+ * Entity class for the character members.
+ */
 public class CharacterMember extends Character {
     private float accumulatedDamage;
     private float knockout;
     private float damageReduction;
     private boolean isEliminated;
 
-    public CharacterMember(int id, String name, double weight, float accumulatedDamage, float knockout, float damageReduction, boolean isEliminated) {
+    /**
+     * Constructor for the CharacterMember class, by only setting the id, name and weight.
+     * @param id The id of the character.
+     * @param name The name of the character.
+     * @param weight The weight of the character.
+     */
+    public CharacterMember(int id, String name, double weight) {
         super(id, name, weight);
 
         this.accumulatedDamage = 0;
@@ -15,6 +24,10 @@ public class CharacterMember extends Character {
         this.isEliminated = false;
     }
 
+    /**
+     * Constructor for the CharacterMember class by only inputting a character.
+     * @param character The character to be converted to a CharacterMember.
+     */
     public CharacterMember(Character character) {
         super(character.getId(), character.getName(), character.getWeight());
 

@@ -11,11 +11,18 @@ import java.util.List;
 import java.util.Scanner;
 import Business.Character;
 
+/**
+ * CharacterDAO class
+ */
 public class CharacterDAO extends BaseDAO<Character> {
     public CharacterDAO() {
         this.filename = "data/characters.json";
     }
 
+    /**
+     * Check if file exists
+     * @throws PersonalizedException
+     */
     public void checkFile() throws PersonalizedException {
         File file = new File(filename);
 
@@ -50,6 +57,13 @@ public class CharacterDAO extends BaseDAO<Character> {
     public void save(Character data) {
     }
 
+    /**
+     * Get character by id
+     * @param id: The id of the character.
+     * @param characters: The characters.
+     * @return Character
+     * @throws PersonalizedException
+     */
     public Character getById(long id, List<Character> characters) throws PersonalizedException {
 
         for (Character character : characters) {
@@ -62,6 +76,13 @@ public class CharacterDAO extends BaseDAO<Character> {
         throw new PersonalizedException("ERROR: Character not found!");
     }
 
+    /**
+     * Get character by name
+     * @param name: The name of the character.
+     * @param characters: The characters.
+     * @return Character
+     * @throws PersonalizedException
+     */
     public Character getByName(String name, List<Character> characters) throws PersonalizedException {
         for (Character character : characters) {
             if (character.getName().equals(name)) {
@@ -72,6 +93,11 @@ public class CharacterDAO extends BaseDAO<Character> {
         throw new PersonalizedException("ERROR: Character not found!");
     }
 
+    /**
+     * Get all characters
+     * @return List<Character>
+     * @throws FileNotFoundException
+     */
     public List<Character> getAll() throws FileNotFoundException {
         File file = new File(filename);
 

@@ -6,14 +6,24 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * ItemManager class
+ */
 public class ItemManager {
     private ItemDAO itemDAO;
 
+    /**
+     * Constructor
+     * @param dao: Item dao
+     */
     public ItemManager(ItemDAO dao) {
         this.itemDAO = dao;
     }
 
+    /**
+     * Checks if file exists
+     * @throws PersonalizedException
+     */
     public void checkFileExists() throws PersonalizedException {
         boolean fileIsOkay = itemDAO.checkFile();
         if (!fileIsOkay) {
@@ -21,10 +31,20 @@ public class ItemManager {
         }
     }
 
+    /**
+     * Get all items using itemDAO
+     * @return List<Item>
+     * @throws FileNotFoundException
+     */
     public List<Item> getAllItems() throws FileNotFoundException {
         return itemDAO.getAllItems();
     }
 
+    /**
+     * Get all item names using itemDAO
+     * @return List<String>
+     * @throws FileNotFoundException
+     */
     public List<String> getAllItemNames() throws FileNotFoundException {
         List<String> names = new ArrayList<>();
         List<Item> items = itemDAO.getAllItems();
@@ -34,6 +54,11 @@ public class ItemManager {
         return names;
     }
 
+    /**
+     * Get all item lengths using itemDAO
+     * @return long
+     * @throws FileNotFoundException
+     */
     public long getAllItemsLength() throws FileNotFoundException {
         List<Item> items = itemDAO.getAllItems();
         if (items == null) {
@@ -42,12 +67,23 @@ public class ItemManager {
         return items.size();
     }
 
-    public Item getSpecificItem(int orderId) throws FileNotFoundException {
+    /**
+     * Get item by list id
+     * @param listId: List id
+     * @return Item
+     * @throws FileNotFoundException
+     */
+    public Item getItemByListId(int listId) throws FileNotFoundException {
         List<Item> itemList = itemDAO.getAllItems();
 
-        return itemList.get(orderId - 1);
+        return itemList.get(listId - 1);
     }
 
+    /**
+     * Get random weapon
+     * @return Item
+     * @throws FileNotFoundException
+     */
     public Item getRandomWeapon() throws FileNotFoundException {
         List<Item> items = itemDAO.getAllItems();
         List<Item> weapons = new ArrayList<>();
@@ -62,6 +98,11 @@ public class ItemManager {
         return weapons.get(randomIndex);
     }
 
+    /**
+     * Get random armour
+     * @return Item
+     * @throws FileNotFoundException
+     */
     public Item getRandomArmour() throws FileNotFoundException {
         List<Item> items = itemDAO.getAllItems();
         List<Item> armours = new ArrayList<>();
@@ -75,5 +116,4 @@ public class ItemManager {
         int randomIndex = (int) (Math.random() * armours.size());
         return armours.get(randomIndex);
     }
-
 }

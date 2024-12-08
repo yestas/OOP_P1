@@ -15,8 +15,14 @@ import java.util.*;
 
 import Business.Strategy;
 
+/**
+ * TeamDAO class: Extends BaseDAO
+ */
 public class TeamDAO extends BaseDAO<Team> {
-    
+
+    /**
+     * TeamDAO constructor
+     */
     public TeamDAO() {
         this.filename = "data/teams.json";
     }
@@ -28,6 +34,11 @@ public class TeamDAO extends BaseDAO<Team> {
     public void addTeam(Team data) {
     }
 
+    /**
+     * Get team by character object
+     * @param character: The character object.
+     * @return List<Team>: The list of teams.
+     */
     public List<Team> getTeamsByCharacter(Character character) throws FileNotFoundException {
         List<Team> teams = new ArrayList<>();
         List<Team> allTeams = getAll();
@@ -48,6 +59,10 @@ public class TeamDAO extends BaseDAO<Team> {
 
 
     // TODO: FIX SO IT DESERIALIZES THE TEAM MEMBERS CORRECTLY
+    /**
+     * Get all teams
+     * @return List<Team>: The list of teams.
+     */
     public List<Team> getAll() throws FileNotFoundException {
         File file = new File(filename);
 
@@ -73,6 +88,12 @@ public class TeamDAO extends BaseDAO<Team> {
         return false;
     }
 
+    /**
+     * Check if team name is unique, returns true if does not exist, false otherwise.
+     * @param name: The name of the team.
+     * @return boolean
+     * @throws FileNotFoundException
+     */
     public boolean checkNameUnique(String name) throws FileNotFoundException {
         File file = new File(filename);
 
@@ -105,6 +126,11 @@ public class TeamDAO extends BaseDAO<Team> {
     //    return Team;
     //}
 
+    // TODO: FIX SO IT SERIALIZES CORRECTLY, not so forced
+    /**
+     * Add team to file
+     * @param team: The team object.
+     */
     public void addTeamToFile(Team team) {
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
@@ -132,6 +158,10 @@ public class TeamDAO extends BaseDAO<Team> {
 
     }
 
+    /**
+     * Write to file given a json string
+     * @param jsonString: Json string
+     */
     @Override
     public void writeFile(String jsonString) {
         try (FileWriter fileWriter = new FileWriter(filename, true)) {
