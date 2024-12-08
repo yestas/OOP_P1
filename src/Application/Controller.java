@@ -125,14 +125,15 @@ public class Controller {
                     case 1 -> createTeamMenu();
                     case 2 -> listTeamsMenu();
                     case 3 -> deleteTeamMenu();
-                    case 4 -> ui.printMessage("Exiting team management menu..");
+                    case 4 -> ui.printMessage("\nExiting team management menu...\n");
                 }
             } catch (Exception e) {
                 ui.printMessage(e.getMessage()); ;
             }
         } while (menuOption != 4);
 
-        System.out.println("TODO: Implement manageTeams");
+        // TODO: LIST TEAMS MEMBERS
+        // TODO: DELETE TEAM MENU
     }
 
     public void createTeamMenu() {
@@ -211,7 +212,24 @@ public class Controller {
     }
 
     public void listTeamsMenu() {
-        System.out.println("TODO: Implement listItems");
+        try {
+            List<Team> teams = teamManager.getAllTeams();
+            if (teams.isEmpty()) {
+                ui.printMessage("No teams found.");
+            } else {
+                ui.printTeams(teams);
+                int teamOption = uiManager.checkUserInput(ui.askForString("Choose an option: "), 0, teams.size());
+
+                if (teamOption == 0) {
+                    return;
+                }
+
+                ui.printTeamInfo(teams.get(teamOption - 1));
+            }
+        } catch (Exception e) {
+            ui.printMessage(e.getMessage());
+        }
+        // TODO: Implement listItems
     }
 
     public void deleteTeamMenu() {
