@@ -131,6 +131,25 @@ public class UI {
         return scanner.nextLine();
     }
 
+    public void printTeams(List<Team> teams) {
+        int i = 1;
+        System.out.println();
+        for (Team team : teams) {
+            System.out.println("\t" + i + ") " + team.getName());
+            i++;
+        }
+        System.out.println("\n\t0) Back\n");
+    }
+
+    public void printTeamInfo(Team team) {
+        System.out.println("\n\tTeam name: " + team.getName());
+        System.out.println();
+        for (TeamMember member : team.getMembers()) {
+            System.out.println(member.getCharacterMember());
+            //System.out.println("\t" + member.getCharacterMember().getName() + "\t\t\t(" + member.getStrategy().toString().toUpperCase() + ")");
+        }
+    }
+
     public void listCharacters(List<CharacterMember> characterMembers) {
     }
 
